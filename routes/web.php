@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth']], function (){
     Route::get('/user/profile', 'UserController@edit')->name('user_profile');
     Route::patch('/user/profile', 'UserController@update')->name('user_profile_edit');
+
+    Route::resource('post', 'PostController');
+    Route::resource('like', 'LikeController');
 });
 
 
