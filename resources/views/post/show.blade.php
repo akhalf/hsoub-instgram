@@ -44,10 +44,12 @@
                                 <div class="d-flex justify-content-between align-items-center w-100">
                                     <strong class="text-gray-dark"></strong>
                                 </div>
-                                <form action="" method="">
+                                <form method="POST" action="{{ route('comment.store') }}">
+                                    @csrf
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <input type="text" name="" class="form-control" placeholder="أضف تعليقاً" style="width:  100%;">
+                                            <input type="text" name="comment" class="form-control" placeholder="أضف تعليقاً" style="width:  100%;">
                                         </div>
                                         <div class="col-md-2" style="margin-top:  4px;">
                                             <input type="submit" class="btn btn-sm btn-outline-secondary" name="send" value="إضافة التعليق">
@@ -57,6 +59,26 @@
                             </div>
                         </div>
                     </div>
+
+                    @foreach($post_comments as $comment)
+                    <div class="media text-muted pt-3">
+                        <img src="{{ asset('images/avatar/'.$comment->user->avatar) }}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <strong class="text-gray-dark">{{$comment->user->name}}</strong><br>
+                                @if($comment->user_id == auth()->id())
+                                    <form method="POST" action="{{ route('comment.destroy', $comment->id) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input type="submit" class="btn btn-outline-danger" value="delete">
+                                    </form>
+                                @endif
+                            </div>
+                            <span class="d-block">{{ $comment->comment }}</span>
+                        </div>
+                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>

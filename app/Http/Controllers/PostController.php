@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Like;
 use App\Post;
 use App\User;
@@ -68,8 +69,9 @@ class PostController extends Controller
         //
         $post=Post::with('user')->find($id);
         $likes = Like::where('post_id', $id)->count();
-        $user_like = Like::where(['user_id' => auth()->id(), 'post_id' => $id]);
-        return view('post.show', compact('post', 'likes', 'user_like'));
+        $user_like = Like::where(['user_id' => auth()->id(), 'post_id' => $id])->get();
+        $post_comments = Comment::where('post_id', $id)->get();
+        return view('post.show', compact('post', 'likes', 'user_like', 'post_comments'));
     }
 
     /**
