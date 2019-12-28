@@ -23,6 +23,9 @@ Route::group(['middleware' => ['auth']], function (){
     Route::resource('post', 'PostController');
     Route::resource('like', 'LikeController');
     Route::resource('comment', 'CommentController');
+    Route::resource('follow', 'FollowController');
+
+    Route::get('users', 'UserController@index')->name('users');
 });
 
 
