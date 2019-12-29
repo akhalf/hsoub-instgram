@@ -39,6 +39,10 @@
                 <a href="{{ route('post.create') }}">Add your first post</a>
 
             @endforelse
+
+            @isset($posts)
+                {{ $posts->links('pagination::bootstrap-4') }}
+                @endisset
         </div>
         <!-- Paginations -->
     </div>

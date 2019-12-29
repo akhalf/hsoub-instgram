@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="960f205d-8ea1-4ee6-bbad-69d826fa9b6b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/follower/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/follower/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/post/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/post/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,9 +129,18 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\web\hs\hsoub-instagram\resources\views\post" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\web\hs\hsoub-instagram\public\images" />
+      <recent name="C:\xampp\htdocs\web\hs\hsoub-instagram\database\seeds" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -158,7 +173,7 @@
       <workItem from="1577266997669" duration="7735000" />
       <workItem from="1577353292520" duration="26037000" />
       <workItem from="1577455438947" duration="10112000" />
-      <workItem from="1577538413573" duration="10572000" />
+      <workItem from="1577538413573" duration="23501000" />
     </task>
     <servers />
   </component>
@@ -176,6 +191,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="2685" y="206" key="#com.intellij.ide.util.MemberChooser" timestamp="1577616194994">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2685" y="206" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577616194994" />
     <state x="2560" y="249" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1577353278529">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -188,14 +207,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2614" y="335" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577466648816" />
-    <state x="2714" y="444" key="NewPhpFileDialog" timestamp="1577542254374">
+    <state x="2714" y="444" key="NewPhpFileDialog" timestamp="1577557981630">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2714" y="444" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577542254374" />
-    <state x="922" y="327" key="SettingsEditor" timestamp="1577353853147">
+    <state x="2714" y="444" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577557981630" />
+    <state x="735" y="208" key="SettingsEditor" timestamp="1577616123959">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="922" y="327" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577353853147" />
+    <state x="735" y="208" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577616123959" />
     <state x="2601" y="261" width="570" height="524" key="StructurePopup" timestamp="1577553825586">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -208,9 +227,9 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2536" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577471614436" />
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577540348811">
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577559830082">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577540348811" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1577559830082" />
   </component>
 </project>

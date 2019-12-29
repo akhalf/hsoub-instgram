@@ -6,6 +6,7 @@ use App\Comment;
 use App\Like;
 use App\Post;
 use App\User;
+use App\Follower;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,36 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts=Post::where(['user_id' => auth()->id()])->get();
+        $posts = Post::where('user_id','=', auth()->id())->paginate(3);
+
         $active_profile = 'primary';
         return view('post.index', compact('posts', 'active_profile'));
+    }
+
+    public function allPosts()
+    {
+        //
+        $posts=Post::withCount('likes')
+            ->whereIn('user_id', auth()->user()->following()->where('accepted', '=', 1)
+                ->pluck('to_user_id')
+            )->paginate(3);
+        $active_home = 'primary';
+        return view('home', compact('posts', 'active_home'));
+    }
+
+    public function userFriendPosts($id)
+    {
+        //
+        $is_follower=Follower::where(['from_user_id'=> auth()->id(), 'to_user_id'=> $id, 'accepted'=> 1])->get();
+        if ($is_follower){
+            $posts = Post::withCount('likes')->where(['user_id'=>$id])->paginate(3);
+            $friend_name=null;
+            if (count($posts))
+                $friend_name = $posts[0]->user->first_name .' '. $posts[0]->user->last_name;
+            return view('home', compact('posts','friend_name'));
+        }
+
+        return redirect('home');
     }
 
     /**

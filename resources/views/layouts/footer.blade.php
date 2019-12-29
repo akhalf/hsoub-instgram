@@ -36,16 +36,17 @@
 					wildcard: '%QUERY%'
 				},
 			});
-			
+
 			$('#search').typeahead({
 				hint: true,
 				highlight: true,
 				minLength: 1
 			}, {
 				name: 'users',
+                lime: 10,
 				source: bloodhound,
 				display: function(data) {
-					return data.name  //Input value to be set when you select a suggestion. 
+					return data.name  //Input value to be set when you select a suggestion.
 				},
 				templates: {
 					empty: [

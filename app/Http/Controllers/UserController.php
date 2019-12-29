@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Follower;
+use App\Like;
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -49,9 +51,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
+        $request->id = $id;
+        $user = User::find($request->id);
+        $posts = Post::where(['user_id'=>$request->id])->limit(3)->get();
+        $posts_count = Post::where(['user_id'=>$request->id])->count();
+        $likes_count =Like::whereIn('post_id', Post::where(['user_id'=>$request->id])->get()->pluck('id'))->count();
+        $is_follower = Follower::where(['from_user_id' => auth()->id(), 'to_user_id' => $request->id])->first();
+
+        return view('auth.user_info',compact('user', 'posts', 'posts_count', 'likes_count', 'is_follower'));
     }
 
     /**
@@ -64,7 +74,8 @@ class UserController extends Controller
     {
         //view edit page
         $user = User::find(Auth()->id());
-        return view('auth.user_profile', compact('user'));
+        $active_profile='primary';
+        return view('auth.user_profile', compact('user', 'active_profile'));
     }
 
     /**
@@ -103,5 +114,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function autocomplete(Request $request){
+        $results=array();
+        $item = $request->searchname;
+        $data = User::where('first_name', 'LIKE', '%'.$item.'%')->orWhere('last_name', 'LIKE', '%'.$item.'%')
+            ->take(5)
+            ->get();
+        return response()->json($data);
     }
 }
