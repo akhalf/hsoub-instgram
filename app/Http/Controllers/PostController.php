@@ -40,8 +40,9 @@ class PostController extends Controller
     public function userFriendPosts($id)
     {
         //
-        $is_follower=Follower::where(['from_user_id'=> auth()->id(), 'to_user_id'=> $id, 'accepted'=> 1])->get();
-        if ($is_follower){
+        //$is_follower=Follower::where(['from_user_id'=> auth()->id(), 'to_user_id'=> $id, 'accepted'=> 1])->get();
+
+        if (policy(Post::class)->userFriendPosts(auth()->user(), $id)){
             $posts = Post::withCount('likes')->where(['user_id'=>$id])->paginate(3);
             $friend_name=null;
             if (count($posts))
@@ -96,10 +97,15 @@ class PostController extends Controller
     {
         //
         $post=Post::with('user')->find($id);
-        $likes = Like::where('post_id', $id)->count();
-        $user_like = Like::where(['user_id' => auth()->id(), 'post_id' => $id])->get();
-        $post_comments = Comment::where('post_id', $id)->get();
-        return view('post.show', compact('post', 'likes', 'user_like', 'post_comments'));
+        $user = auth()->user();
+        if ($user->can('show', $post)){
+            $likes = Like::where('post_id', $id)->count();
+            $user_like = Like::where(['user_id' => auth()->id(), 'post_id' => $id])->get();
+            $post_comments = Comment::where('post_id', $id)->get();
+            return view('post.show', compact('post', 'likes', 'user_like', 'post_comments'));
+        }
+        else
+            return redirect('not_found');
     }
 
     /**
@@ -112,7 +118,7 @@ class PostController extends Controller
     {
         //
         $post=Post::find($id);
-        if ($post->user_id == Auth::id())
+        if (auth()->user()->can('edit', $post))
             return view('post.edit', compact('post'));
         else
             return redirect('not_found');
@@ -130,7 +136,7 @@ class PostController extends Controller
     {
         //
         $post=Post::find($id);
-        if ($post->user_id == Auth::id()){
+        if (auth()->user()->can('update', $post)){
             $post->body=$request->get('body');
             $post->save();
             return $this->show($id);
@@ -149,7 +155,7 @@ class PostController extends Controller
     {
         //
         $post=Post::find($id);
-        if ($post->user_id == Auth::id()){
+        if (auth()->user()->can('delete', $post)){
             $post->delete();
             return redirect(route('post.index'));
         }

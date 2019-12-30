@@ -13,11 +13,13 @@
                                 <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->user->name }}</p>
                             </div>
                         </div>
-                        <form action="{{ route('post.destroy', $post->id) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-sm btn-outline-secondary" type="submit">حذف</button>
-                        </form>
+                        @can('delete', $post)
+                            <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-sm btn-outline-secondary" type="submit">حذف</button>
+                            </form>
+                        @endcan
                     </div>
                     <img class="card-img-top" src="{{ asset('images/'.$post->image_path) }}" alt="Card image cap">
                     <div class="card-body">

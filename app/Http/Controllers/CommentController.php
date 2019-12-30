@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -36,6 +37,8 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         //
+        $post = Post::with('user')->find($request->get('post_id'));
+        if (policy(Comment::class)->store(auth()->user(), $post)){
         $comment = new Comment();
         $comment->post_id = $request->get('post_id');
         $comment->user_id = auth()->id();
@@ -43,6 +46,10 @@ class CommentController extends Controller
         $comment->save();
 
         return back();
+        }
+        else{
+            redirect('not_found');
+        }
     }
 
     /**
@@ -89,7 +96,7 @@ class CommentController extends Controller
     {
         //
         $comment = Comment::find($id);
-        if ($comment->user_id == auth()->id())
+        if (auth()->user()->can('delete', $comment))
             $comment->delete();
         return back();
     }
